@@ -15,17 +15,13 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s: %(name)s: %(levelna
 random.seed(42)
 warnings.filterwarnings("ignore")
 
-'''
-tf.compat.v1.set_random_seed(1)  # 图级种子，使所有操作会话生成的随机序列在会话中可重复，请设置图级种子：
-random.seed(1)  # 让每次生成的随机数一致
-np.random.seed(1)  #
-'''
 set_session = tf.compat.v1.keras.backend.set_session
 
 config = tf.compat.v1.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.55  # half of the memory
 set_session(tf.compat.v1.Session(config=config))
 
+#图级种子
 seed = 42
 np.random.seed(seed)
 tf.random.set_seed(seed)
